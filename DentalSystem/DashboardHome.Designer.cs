@@ -285,6 +285,7 @@ namespace DentalSystem
                 qBtn.Size      = new System.Drawing.Size(162, 38);
                 qBtn.Location  = new System.Drawing.Point(14 + (i % 2) * 178, 50 + (i / 2) * 50);
                 qBtn.Cursor    = System.Windows.Forms.Cursors.Hand;
+                qBtn.Click    += new System.EventHandler(this.QuickAction_Click);
                 pnlQuick.Controls.Add(qBtn);
             }
 

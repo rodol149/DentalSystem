@@ -63,7 +63,7 @@ namespace DentalSystem
                 lblRevenue.Text = "$" + string.Format("{0:N0}", revenue);
 
                 // Pending Invoices
-                var pending = GetScalar("SELECT COUNT(*) FROM invoices WHERE status='Pending'");
+                var pending = GetScalar("SELECT COUNT(*) FROM invoices WHERE status='Partial'");
                 lblPendingInv.Text = pending.ToString();
 
                 // Unpaid count
@@ -121,6 +121,31 @@ namespace DentalSystem
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadStats();
+        }
+
+        private void QuickAction_Click(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            var mainDashboard = this.ParentForm as Dashboard;
+            if (mainDashboard == null) return;
+
+            switch (btn.Text)
+            {
+                case "New Patient":
+                    mainDashboard.OpenChildForm(new Patient());
+                    break;
+                case "Book Appointment":
+                    mainDashboard.OpenChildForm(new appointments());
+                    break;
+                case "Add Treatment":
+                    mainDashboard.OpenChildForm(new treatment());
+                    break;
+                case "Record Payment":
+                    mainDashboard.OpenChildForm(new payments());
+                    break;
+            }
         }
 
         // ── Rounded panel paint helper ─────────────────────────────────────
