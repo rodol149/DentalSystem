@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
@@ -73,6 +73,12 @@ namespace DentalSystem
 
         private void btnsave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtusername.Text))
+            {
+                MessageBox.Show("Please enter a username.");
+                return;
+            }
+
             try
             {
                 if (con.State == ConnectionState.Open)
@@ -81,6 +87,20 @@ namespace DentalSystem
                 }
                 con.Open();
 
+                // Check duplicate username
+                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @user";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@user", txtusername.Text.Trim());
+                    long count = Convert.ToInt64(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("This username is already taken. Please choose another username.");
+                        con.Close();
+                        return;
+                    }
+                }
+
                 string query = @"INSERT INTO users
                                     (full_name,username,password,role,status,created_at)
                                     VALUES
@@ -88,8 +108,8 @@ namespace DentalSystem
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@name", txtfullname.Text);
-                cmd.Parameters.AddWithValue("@user", txtusername.Text);
+                cmd.Parameters.AddWithValue("@name", txtfullname.Text.Trim());
+                cmd.Parameters.AddWithValue("@user", txtusername.Text.Trim());
                 cmd.Parameters.AddWithValue("@pass", txtpassword.Text);
                 cmd.Parameters.AddWithValue("@role", cmbrole.Text);
                 cmd.Parameters.AddWithValue("@status", cmbstatus.Text);
@@ -230,31 +250,55 @@ namespace DentalSystem
 
         private void btnupdate_Click_1(object sender, EventArgs e)
         {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a user to update.");
+                return;
+            }
+
             int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+
+            if (string.IsNullOrWhiteSpace(txtusername.Text))
+            {
+                MessageBox.Show("Please enter a username.");
+                return;
+            }
 
             try
             {
-
                 if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                 }
                 con.Open();
 
-                string query = @"UPDATE users SET
+                // Check duplicate username excluding current user ID
+                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @user AND user_id != @id";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@user", txtusername.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@id", id);
+                    long count = Convert.ToInt64(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("This username is already taken by another user. Please choose another username.");
+                        con.Close();
+                        return;
+                    }
+                }
 
+                string query = @"UPDATE users SET
                                         full_name=@name,
                                         username=@user,
                                         password=@pass,
                                         role=@role,
                                         status=@status
-
                                         WHERE user_id=@id";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@name", txtfullname.Text);
-                cmd.Parameters.AddWithValue("@user", txtusername.Text);
+                cmd.Parameters.AddWithValue("@name", txtfullname.Text.Trim());
+                cmd.Parameters.AddWithValue("@user", txtusername.Text.Trim());
                 cmd.Parameters.AddWithValue("@pass", txtpassword.Text);
                 cmd.Parameters.AddWithValue("@role", cmbrole.Text);
                 cmd.Parameters.AddWithValue("@status", cmbstatus.Text);

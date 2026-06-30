@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,28 +47,52 @@ namespace DentalSystem
 
         private void btnsave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtfullname.Text))
+            {
+                MessageBox.Show("Please enter the patient's full name.");
+                return;
+            }
+
             try
             {
                 con.Open();
+
+                // Check duplicate by name or phone
+                string checkQuery = "SELECT COUNT(*) FROM patients WHERE phone = @phone OR full_name = @fullname";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
+                    long count = Convert.ToInt64(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("A patient with this name or phone number already exists.");
+                        con.Close();
+                        return;
+                    }
+                }
+
                 String query = @"insert into patients (full_name, gender, phone, email, address, date_of_birth) values (@fullname, @gender, @phone, @email, @address, @date_of_birth)";
                 MySqlCommand cm = new MySqlCommand(query, con);
-                cm.Parameters.AddWithValue("@fullname", txtfullname.Text);
+                cm.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
                 cm.Parameters.AddWithValue("@gender", cmbg.Text);
-                cm.Parameters.AddWithValue("@phone", txtphone.Text);
-                cm.Parameters.AddWithValue("@email", txtemail.Text);
-                cm.Parameters.AddWithValue("@address", txtaddress.Text);
+                cm.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
+                cm.Parameters.AddWithValue("@email", txtemail.Text.Trim());
+                cm.Parameters.AddWithValue("@address", txtaddress.Text.Trim());
                 cm.Parameters.AddWithValue("@date_of_birth", dob.Value.Date);
 
                 cm.ExecuteNonQuery();
+                con.Close();
+
                 Patient_Load(null, null);
                 MessageBox.Show("Patient added successfully");
-
+                btnclear_Click(null, null); // Clear textboxes to prevent double saving
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
             }
-            con.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -97,44 +121,82 @@ namespace DentalSystem
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
+            if (patientID == 0)
+            {
+                MessageBox.Show("Please select a patient to update.");
+                return;
+            }
+
             try {
                 con.Open();
+
+                // Check duplicate by name or phone excluding current patient ID
+                string checkQuery = "SELECT COUNT(*) FROM patients WHERE (phone = @phone OR full_name = @fullname) AND patient_id != @patient_id";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@patient_id", patientID);
+                    long count = Convert.ToInt64(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Another patient with this name or phone number already exists.");
+                        con.Close();
+                        return;
+                    }
+                }
+
                 string query = @"update patients set full_name=@fullname, gender=@gender, phone=@phone, 
                             email=@email, address=@address, date_of_birth=@date_of_birth where patient_id = @patient_id";
                 MySqlCommand cm = new MySqlCommand(query, con);
-                cm.Parameters.AddWithValue("@fullname", txtfullname.Text);
+                cm.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
                 cm.Parameters.AddWithValue("@gender", cmbg.Text);
-                cm.Parameters.AddWithValue("@phone", txtphone.Text);
-                cm.Parameters.AddWithValue("@email", txtemail.Text);
-                cm.Parameters.AddWithValue("@address", txtaddress.Text);
+                cm.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
+                cm.Parameters.AddWithValue("@email", txtemail.Text.Trim());
+                cm.Parameters.AddWithValue("@address", txtaddress.Text.Trim());
                 cm.Parameters.AddWithValue("@date_of_birth", dob.Value.Date);
                 cm.Parameters.AddWithValue("@patient_id", patientID);
 
                 cm.ExecuteNonQuery();
+                con.Close();
+
                 Patient_Load(null,null);
                 MessageBox.Show("Patient updated successfully");
-                
-
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
             }
-
-            con.Close();
         }
 
         private void btndelete_Click(object sender, EventArgs e)
         {
+            if (patientID == 0)
+            {
+                MessageBox.Show("Please select a patient to delete.");
+                return;
+            }
 
-            con.Open();
-            string query = @"delete from patients where patient_id = @patient_id";
-            MySqlCommand cm = new MySqlCommand(query, con);
-            cm.Parameters.AddWithValue("@patient_id", patientID);
-            cm.ExecuteNonQuery();
-            Patient_Load(null, null);
-            MessageBox.Show("Patient deleted successfully");
-            con.Close();
+            try
+            {
+                con.Open();
+                string query = @"delete from patients where patient_id = @patient_id";
+                MySqlCommand cm = new MySqlCommand(query, con);
+                cm.Parameters.AddWithValue("@patient_id", patientID);
+                cm.ExecuteNonQuery();
+                con.Close();
+
+                Patient_Load(null, null);
+                MessageBox.Show("Patient deleted successfully");
+                btnclear_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
+            }
         }
 
         private void btnclear_Click(object sender, EventArgs e)
