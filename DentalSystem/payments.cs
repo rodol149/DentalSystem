@@ -177,6 +177,16 @@ namespace DentalSystem
             {
                 con.Open();
 
+                // Fetch old invoice_id first
+                int oldInvoiceId = 0;
+                string queryOld = "SELECT invoice_id FROM payments WHERE payment_id = @id";
+                using (MySqlCommand cmdOld = new MySqlCommand(queryOld, con))
+                {
+                    cmdOld.Parameters.AddWithValue("@id", paymentID);
+                    var val = cmdOld.ExecuteScalar();
+                    if (val != null && val != DBNull.Value) oldInvoiceId = Convert.ToInt32(val);
+                }
+
                 string query = @"UPDATE payments
                                             SET
                                             invoice_id=@invoice,
@@ -195,6 +205,10 @@ namespace DentalSystem
 
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                // Update both old and new invoice status
+                UpdateInvoiceStatus(oldInvoiceId);
+                UpdateInvoiceStatus(Convert.ToInt32(cmbinvoice.SelectedValue));
 
                 MessageBox.Show("Updated Successfully");
 
@@ -220,6 +234,16 @@ namespace DentalSystem
             {
                 con.Open();
 
+                // Fetch invoice_id first before deleting
+                int invoiceId = 0;
+                string queryInvoice = "SELECT invoice_id FROM payments WHERE payment_id = @id";
+                using (MySqlCommand cmdInv = new MySqlCommand(queryInvoice, con))
+                {
+                    cmdInv.Parameters.AddWithValue("@id", paymentID);
+                    var val = cmdInv.ExecuteScalar();
+                    if (val != null && val != DBNull.Value) invoiceId = Convert.ToInt32(val);
+                }
+
                 MySqlCommand cmd = new MySqlCommand(
                 "DELETE FROM payments WHERE payment_id=@id", con);
 
@@ -227,6 +251,9 @@ namespace DentalSystem
 
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                // Recalculate status of the invoice
+                UpdateInvoiceStatus(invoiceId);
 
                 MessageBox.Show("Deleted Successfully");
 
@@ -282,6 +309,9 @@ namespace DentalSystem
                 cmd.ExecuteNonQuery();
                 con.Close();
 
+                // Recalculate status of the invoice
+                UpdateInvoiceStatus(Convert.ToInt32(cmbinvoice.SelectedValue));
+
                 MessageBox.Show("Payment Saved Successfully");
 
                 LoadPayments();
@@ -291,6 +321,69 @@ namespace DentalSystem
             {
                 MessageBox.Show(ex.Message);
                 if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
+
+        private void UpdateInvoiceStatus(int invoiceId)
+        {
+            if (invoiceId <= 0) return;
+
+            try
+            {
+                using (MySqlConnection tempCon = new MySqlConnection(connString))
+                {
+                    tempCon.Open();
+
+                    // 1. Get total invoice amount
+                    decimal totalAmount = 0;
+                    string amountQuery = "SELECT total_amount FROM invoices WHERE invoice_id = @invoice_id";
+                    using (MySqlCommand amountCmd = new MySqlCommand(amountQuery, tempCon))
+                    {
+                        amountCmd.Parameters.AddWithValue("@invoice_id", invoiceId);
+                        var val = amountCmd.ExecuteScalar();
+                        if (val != null && val != DBNull.Value)
+                        {
+                            totalAmount = Convert.ToDecimal(val);
+                        }
+                    }
+
+                    // 2. Get sum of all payments for this invoice
+                    decimal totalPaid = 0;
+                    string paidQuery = "SELECT SUM(amount) FROM payments WHERE invoice_id = @invoice_id";
+                    using (MySqlCommand paidCmd = new MySqlCommand(paidQuery, tempCon))
+                    {
+                        paidCmd.Parameters.AddWithValue("@invoice_id", invoiceId);
+                        var val = paidCmd.ExecuteScalar();
+                        if (val != null && val != DBNull.Value)
+                        {
+                            totalPaid = Convert.ToDecimal(val);
+                        }
+                    }
+
+                    // 3. Determine status
+                    string newStatus = "Unpaid";
+                    if (totalPaid >= totalAmount && totalAmount > 0)
+                    {
+                        newStatus = "Paid";
+                    }
+                    else if (totalPaid > 0)
+                    {
+                        newStatus = "Partial";
+                    }
+
+                    // 4. Update invoice status
+                    string updateQuery = "UPDATE invoices SET status = @status WHERE invoice_id = @invoice_id";
+                    using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, tempCon))
+                    {
+                        updateCmd.Parameters.AddWithValue("@status", newStatus);
+                        updateCmd.Parameters.AddWithValue("@invoice_id", invoiceId);
+                        updateCmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating invoice status: " + ex.Message);
             }
         }
 

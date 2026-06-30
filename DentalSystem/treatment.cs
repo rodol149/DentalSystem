@@ -293,6 +293,39 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@notes", txtnote.Text.Trim());
 
                 cmd.ExecuteNonQuery();
+
+                long treatmentId = cmd.LastInsertedId;
+                if (treatmentId <= 0)
+                {
+                    using (MySqlCommand lastIdCmd = new MySqlCommand("SELECT LAST_INSERT_ID()", con))
+                    {
+                        treatmentId = Convert.ToInt64(lastIdCmd.ExecuteScalar());
+                    }
+                }
+
+                // Get patient_id from appointments
+                int patientId = 0;
+                string getPatientQuery = "SELECT patient_id FROM appointments WHERE appointment_id = @appointment_id";
+                using (MySqlCommand patientCmd = new MySqlCommand(getPatientQuery, con))
+                {
+                    patientCmd.Parameters.AddWithValue("@appointment_id", cmbappointment.SelectedValue);
+                    patientId = Convert.ToInt32(patientCmd.ExecuteScalar());
+                }
+
+                // Automatically generate an Unpaid Invoice
+                string invoiceQuery = @"INSERT INTO invoices 
+                                        (patient_id, treatment_id, invoice_date, total_amount, status) 
+                                        VALUES 
+                                        (@patient_id, @treatment_id, @date, @amount, 'Unpaid')";
+                using (MySqlCommand invoiceCmd = new MySqlCommand(invoiceQuery, con))
+                {
+                    invoiceCmd.Parameters.AddWithValue("@patient_id", patientId);
+                    invoiceCmd.Parameters.AddWithValue("@treatment_id", treatmentId);
+                    invoiceCmd.Parameters.AddWithValue("@date", treatmentdate.Value.Date);
+                    invoiceCmd.Parameters.AddWithValue("@amount", fee);
+                    invoiceCmd.ExecuteNonQuery();
+                }
+
                 con.Close();
 
                 MessageBox.Show("Treatment Saved Successfully");
@@ -364,6 +397,29 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@id", treatmentID);
 
                 cmd.ExecuteNonQuery();
+
+                // Get patient_id from appointments
+                int patientId = 0;
+                string getPatientQuery = "SELECT patient_id FROM appointments WHERE appointment_id = @appointment_id";
+                using (MySqlCommand patientCmd = new MySqlCommand(getPatientQuery, con))
+                {
+                    patientCmd.Parameters.AddWithValue("@appointment_id", cmbappointment.SelectedValue);
+                    patientId = Convert.ToInt32(patientCmd.ExecuteScalar());
+                }
+
+                // Update corresponding invoice details
+                string updateInvoiceQuery = @"UPDATE invoices 
+                                              SET patient_id = @patient_id, total_amount = @fee, invoice_date = @date
+                                              WHERE treatment_id = @treatment_id";
+                using (MySqlCommand invoiceCmd = new MySqlCommand(updateInvoiceQuery, con))
+                {
+                    invoiceCmd.Parameters.AddWithValue("@patient_id", patientId);
+                    invoiceCmd.Parameters.AddWithValue("@fee", fee);
+                    invoiceCmd.Parameters.AddWithValue("@date", treatmentdate.Value.Date);
+                    invoiceCmd.Parameters.AddWithValue("@treatment_id", treatmentID);
+                    invoiceCmd.ExecuteNonQuery();
+                }
+
                 con.Close();
 
                 MessageBox.Show("Treatment Updated Successfully");
@@ -390,6 +446,15 @@ namespace DentalSystem
             {
                 con.Open();
 
+                // First delete corresponding invoice
+                string deleteInvoiceQuery = "DELETE FROM invoices WHERE treatment_id = @id";
+                using (MySqlCommand invoiceCmd = new MySqlCommand(deleteInvoiceQuery, con))
+                {
+                    invoiceCmd.Parameters.AddWithValue("@id", treatmentID);
+                    invoiceCmd.ExecuteNonQuery();
+                }
+
+                // Then delete the treatment
                 string query =
                     "DELETE FROM treatments WHERE treatment_id=@id";
 
