@@ -17,16 +17,6 @@ namespace DentalSystem
         public Login()
         {
             InitializeComponent();
-            this.Resize += (s, ev) => CenterLoginCard();
-        }
-
-        private void CenterLoginCard()
-        {
-            if (pnlLoginCard != null)
-            {
-                pnlLoginCard.Left = (this.ClientSize.Width - pnlLoginCard.Width) / 2;
-                pnlLoginCard.Top = (this.ClientSize.Height - pnlLoginCard.Height) / 2;
-            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -130,7 +120,6 @@ namespace DentalSystem
 
             rbadmin.Checked = true;
 
-            CenterLoginCard();
             txtUsername.Focus();
         }
         

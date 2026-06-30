@@ -46,9 +46,13 @@ namespace DentalSystem
                 var patientsCount = GetScalar("SELECT COUNT(*) FROM patients");
                 UpdateStatCard(pnlPatients, lblPatCount, patientsCount);
 
-                // Total Doctors
-                var doctorsCount = GetScalar("SELECT COUNT(*) FROM doctors WHERE status='Active'");
+                // Total Doctors (Active from users table, excluding admins and receptions)
+                var doctorsCount = GetScalar("SELECT COUNT(*) FROM users WHERE role='Doctor' AND status='Active'");
                 UpdateStatCard(pnlDoctors, lblDocCount, doctorsCount);
+
+                // Total Reception (Active from users table)
+                var receptionCount = GetScalar("SELECT COUNT(*) FROM users WHERE role='Reception' AND status='Active'");
+                UpdateStatCard(pnlReception, lblRecCount, receptionCount);
 
                 // Today's Appointments
                 var apptCount = GetScalar("SELECT COUNT(*) FROM appointments WHERE DATE(appointment_date) = CURDATE()");
@@ -73,9 +77,9 @@ namespace DentalSystem
                 // Recent appointments (last 5)
                 LoadRecentAppointments();
             }
-            catch
+            catch (Exception ex)
             {
-                // DB might not be available — show zeros
+                MessageBox.Show("Error loading statistics: " + ex.Message);
             }
             finally
             {
