@@ -1,16 +1,9 @@
-﻿namespace DentalSystem
+namespace DentalSystem
 {
     partial class treatment
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,322 +15,385 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pnlLeftCard = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.cmbappointment = new System.Windows.Forms.ComboBox();
-            this.cmbservice = new System.Windows.Forms.ComboBox();
-            this.cmbdoctor = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmbservice = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.cmbdoctor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtnote = new System.Windows.Forms.TextBox();
-            this.treatmentdate = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtsearch = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtfee = new System.Windows.Forms.TextBox();
-            this.btnrefresh = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.treatmentdate = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtnote = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnsave = new System.Windows.Forms.Button();
             this.btnupdate = new System.Windows.Forms.Button();
             this.btndel = new System.Windows.Forms.Button();
             this.btnclear = new System.Windows.Forms.Button();
-            this.btnsave = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.btnrefresh = new System.Windows.Forms.Button();
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.txtsearch = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pnlLeftCard.SuspendLayout();
+            this.pnlRight.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlLeftCard
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1382, 51);
-            this.panel1.TabIndex = 1;
+            this.pnlLeftCard.BackColor = System.Drawing.Color.White;
+            this.pnlLeftCard.Controls.Add(this.label1);
+            this.pnlLeftCard.Controls.Add(this.cmbappointment);
+            this.pnlLeftCard.Controls.Add(this.label2);
+            this.pnlLeftCard.Controls.Add(this.cmbservice);
+            this.pnlLeftCard.Controls.Add(this.label3);
+            this.pnlLeftCard.Controls.Add(this.cmbdoctor);
+            this.pnlLeftCard.Controls.Add(this.label5);
+            this.pnlLeftCard.Controls.Add(this.txtfee);
+            this.pnlLeftCard.Controls.Add(this.label4);
+            this.pnlLeftCard.Controls.Add(this.treatmentdate);
+            this.pnlLeftCard.Controls.Add(this.label6);
+            this.pnlLeftCard.Controls.Add(this.txtnote);
+            this.pnlLeftCard.Controls.Add(this.label7);
+            this.pnlLeftCard.Controls.Add(this.btnsave);
+            this.pnlLeftCard.Controls.Add(this.btnupdate);
+            this.pnlLeftCard.Controls.Add(this.btndel);
+            this.pnlLeftCard.Controls.Add(this.btnclear);
+            this.pnlLeftCard.Controls.Add(this.btnrefresh);
+            this.pnlLeftCard.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeftCard.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeftCard.Name = "pnlLeftCard";
+            this.pnlLeftCard.Size = new System.Drawing.Size(380, 637);
+            this.pnlLeftCard.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(456, 0);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
+            this.label1.Location = new System.Drawing.Point(16, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 54);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Treatments";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
-            this.panel2.Controls.Add(this.btnrefresh);
-            this.panel2.Controls.Add(this.btnupdate);
-            this.panel2.Controls.Add(this.btndel);
-            this.panel2.Controls.Add(this.btnclear);
-            this.panel2.Controls.Add(this.btnsave);
-            this.panel2.Controls.Add(this.txtfee);
-            this.panel2.Controls.Add(this.txtsearch);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.treatmentdate);
-            this.panel2.Controls.Add(this.txtnote);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.cmbdoctor);
-            this.panel2.Controls.Add(this.cmbservice);
-            this.panel2.Controls.Add(this.cmbappointment);
-            this.panel2.Location = new System.Drawing.Point(0, 100);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1326, 427);
-            this.panel2.TabIndex = 2;
-            // 
-            // cmbappointment
-            // 
-            this.cmbappointment.FormattingEnabled = true;
-            this.cmbappointment.Location = new System.Drawing.Point(168, 27);
-            this.cmbappointment.Name = "cmbappointment";
-            this.cmbappointment.Size = new System.Drawing.Size(359, 28);
-            this.cmbappointment.TabIndex = 0;
-            this.cmbappointment.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // cmbservice
-            // 
-            this.cmbservice.FormattingEnabled = true;
-            this.cmbservice.Location = new System.Drawing.Point(168, 80);
-            this.cmbservice.Name = "cmbservice";
-            this.cmbservice.Size = new System.Drawing.Size(359, 28);
-            this.cmbservice.TabIndex = 1;
-            this.cmbservice.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // cmbdoctor
-            // 
-            this.cmbdoctor.FormattingEnabled = true;
-            this.cmbdoctor.Location = new System.Drawing.Point(168, 124);
-            this.cmbdoctor.Name = "cmbdoctor";
-            this.cmbdoctor.Size = new System.Drawing.Size(359, 28);
-            this.cmbdoctor.TabIndex = 2;
-            this.cmbdoctor.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            this.label1.Size = new System.Drawing.Size(221, 38);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Treatment Entry";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(10, 23);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.label2.Location = new System.Drawing.Point(18, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 28);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Appoinment:";
+            this.label2.Size = new System.Drawing.Size(130, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Appointment:";
+            // 
+            // cmbappointment
+            // 
+            this.cmbappointment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbappointment.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbappointment.FormattingEnabled = true;
+            this.cmbappointment.Location = new System.Drawing.Point(22, 80);
+            this.cmbappointment.Name = "cmbappointment";
+            this.cmbappointment.Size = new System.Drawing.Size(330, 36);
+            this.cmbappointment.TabIndex = 2;
+            this.cmbappointment.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(61, 76);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.label3.Location = new System.Drawing.Point(18, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 28);
-            this.label3.TabIndex = 5;
+            this.label3.Size = new System.Drawing.Size(78, 25);
+            this.label3.TabIndex = 3;
             this.label3.Text = "Service:";
             // 
-            // label4
+            // cmbservice
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(65, 171);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 28);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Fee:";
+            this.cmbservice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbservice.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbservice.FormattingEnabled = true;
+            this.cmbservice.Location = new System.Drawing.Point(22, 142);
+            this.cmbservice.Name = "cmbservice";
+            this.cmbservice.Size = new System.Drawing.Size(330, 36);
+            this.cmbservice.TabIndex = 4;
+            this.cmbservice.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(61, 124);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.label5.Location = new System.Drawing.Point(18, 182);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 28);
-            this.label5.TabIndex = 7;
+            this.label5.Size = new System.Drawing.Size(76, 25);
+            this.label5.TabIndex = 5;
             this.label5.Text = "Doctor:";
+            // 
+            // cmbdoctor
+            // 
+            this.cmbdoctor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbdoctor.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbdoctor.FormattingEnabled = true;
+            this.cmbdoctor.Location = new System.Drawing.Point(22, 204);
+            this.cmbdoctor.Name = "cmbdoctor";
+            this.cmbdoctor.Size = new System.Drawing.Size(330, 36);
+            this.cmbdoctor.TabIndex = 6;
+            this.cmbdoctor.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.label4.Location = new System.Drawing.Point(18, 244);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 25);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Fee:";
+            // 
+            // txtfee
+            // 
+            this.txtfee.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtfee.Location = new System.Drawing.Point(22, 266);
+            this.txtfee.Name = "txtfee";
+            this.txtfee.Size = new System.Drawing.Size(330, 34);
+            this.txtfee.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(61, 215);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.label6.Location = new System.Drawing.Point(18, 306);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 28);
-            this.label6.TabIndex = 8;
+            this.label6.Size = new System.Drawing.Size(57, 25);
+            this.label6.TabIndex = 9;
             this.label6.Text = "Date:";
+            // 
+            // treatmentdate
+            // 
+            this.treatmentdate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.treatmentdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.treatmentdate.Location = new System.Drawing.Point(22, 328);
+            this.treatmentdate.Name = "treatmentdate";
+            this.treatmentdate.Size = new System.Drawing.Size(330, 34);
+            this.treatmentdate.TabIndex = 10;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(61, 264);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.label7.Location = new System.Drawing.Point(18, 368);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 28);
-            this.label7.TabIndex = 9;
+            this.label7.Size = new System.Drawing.Size(68, 25);
+            this.label7.TabIndex = 11;
             this.label7.Text = "Notes:";
             // 
             // txtnote
             // 
-            this.txtnote.Location = new System.Drawing.Point(168, 264);
+            this.txtnote.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtnote.Location = new System.Drawing.Point(22, 390);
             this.txtnote.Multiline = true;
             this.txtnote.Name = "txtnote";
-            this.txtnote.Size = new System.Drawing.Size(359, 83);
-            this.txtnote.TabIndex = 10;
+            this.txtnote.Size = new System.Drawing.Size(330, 60);
+            this.txtnote.TabIndex = 12;
             // 
-            // treatmentdate
+            // btnsave
             // 
-            this.treatmentdate.Location = new System.Drawing.Point(168, 217);
-            this.treatmentdate.Name = "treatmentdate";
-            this.treatmentdate.Size = new System.Drawing.Size(359, 26);
-            this.treatmentdate.TabIndex = 11;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 607);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1326, 133);
-            this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // txtsearch
-            // 
-            this.txtsearch.Location = new System.Drawing.Point(949, 29);
-            this.txtsearch.Name = "txtsearch";
-            this.txtsearch.Size = new System.Drawing.Size(237, 26);
-            this.txtsearch.TabIndex = 13;
-            this.txtsearch.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(841, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 28);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Search:";
-            // 
-            // txtfee
-            // 
-            this.txtfee.Location = new System.Drawing.Point(168, 171);
-            this.txtfee.Name = "txtfee";
-            this.txtfee.Size = new System.Drawing.Size(359, 26);
-            this.txtfee.TabIndex = 14;
-            // 
-            // btnrefresh
-            // 
-            this.btnrefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnrefresh.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnrefresh.ForeColor = System.Drawing.Color.White;
-            this.btnrefresh.Location = new System.Drawing.Point(713, 378);
-            this.btnrefresh.Name = "btnrefresh";
-            this.btnrefresh.Size = new System.Drawing.Size(142, 49);
-            this.btnrefresh.TabIndex = 33;
-            this.btnrefresh.Text = "Refresh";
-            this.btnrefresh.UseVisualStyleBackColor = true;
-            this.btnrefresh.Click += new System.EventHandler(this.btnrefresh_Click);
+            this.btnsave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnsave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnsave.FlatAppearance.BorderSize = 0;
+            this.btnsave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnsave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnsave.ForeColor = System.Drawing.Color.White;
+            this.btnsave.Location = new System.Drawing.Point(22, 462);
+            this.btnsave.Name = "btnsave";
+            this.btnsave.Size = new System.Drawing.Size(155, 42);
+            this.btnsave.TabIndex = 13;
+            this.btnsave.Text = "Save";
+            this.btnsave.UseVisualStyleBackColor = false;
+            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
             // btnupdate
             // 
+            this.btnupdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnupdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnupdate.FlatAppearance.BorderSize = 0;
             this.btnupdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnupdate.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnupdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnupdate.ForeColor = System.Drawing.Color.White;
-            this.btnupdate.Location = new System.Drawing.Point(183, 378);
+            this.btnupdate.Location = new System.Drawing.Point(197, 462);
             this.btnupdate.Name = "btnupdate";
-            this.btnupdate.Size = new System.Drawing.Size(142, 49);
-            this.btnupdate.TabIndex = 30;
+            this.btnupdate.Size = new System.Drawing.Size(155, 42);
+            this.btnupdate.TabIndex = 14;
             this.btnupdate.Text = "Update";
-            this.btnupdate.UseVisualStyleBackColor = true;
+            this.btnupdate.UseVisualStyleBackColor = false;
             this.btnupdate.Click += new System.EventHandler(this.btnupdate_Click);
             // 
             // btndel
             // 
+            this.btndel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btndel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btndel.FlatAppearance.BorderSize = 0;
             this.btndel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btndel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btndel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btndel.ForeColor = System.Drawing.Color.White;
-            this.btndel.Location = new System.Drawing.Point(355, 378);
+            this.btndel.Location = new System.Drawing.Point(22, 514);
             this.btndel.Name = "btndel";
-            this.btndel.Size = new System.Drawing.Size(142, 49);
-            this.btndel.TabIndex = 31;
+            this.btndel.Size = new System.Drawing.Size(155, 42);
+            this.btndel.TabIndex = 15;
             this.btndel.Text = "Delete";
-            this.btndel.UseVisualStyleBackColor = true;
+            this.btndel.UseVisualStyleBackColor = false;
             this.btndel.Click += new System.EventHandler(this.btndel_Click);
             // 
             // btnclear
             // 
+            this.btnclear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.btnclear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnclear.FlatAppearance.BorderSize = 0;
             this.btnclear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnclear.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnclear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnclear.ForeColor = System.Drawing.Color.White;
-            this.btnclear.Location = new System.Drawing.Point(525, 378);
+            this.btnclear.Location = new System.Drawing.Point(197, 514);
             this.btnclear.Name = "btnclear";
-            this.btnclear.Size = new System.Drawing.Size(142, 49);
-            this.btnclear.TabIndex = 32;
+            this.btnclear.Size = new System.Drawing.Size(155, 42);
+            this.btnclear.TabIndex = 16;
             this.btnclear.Text = "Clear";
-            this.btnclear.UseVisualStyleBackColor = true;
+            this.btnclear.UseVisualStyleBackColor = false;
             this.btnclear.Click += new System.EventHandler(this.btnclear_Click);
             // 
-            // btnsave
+            // btnrefresh
             // 
-            this.btnsave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnsave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnsave.ForeColor = System.Drawing.Color.White;
-            this.btnsave.Location = new System.Drawing.Point(1, 378);
-            this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(142, 49);
-            this.btnsave.TabIndex = 29;
-            this.btnsave.Text = "Save";
-            this.btnsave.UseVisualStyleBackColor = true;
-            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
+            this.btnrefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
+            this.btnrefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnrefresh.FlatAppearance.BorderSize = 0;
+            this.btnrefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnrefresh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnrefresh.ForeColor = System.Drawing.Color.White;
+            this.btnrefresh.Location = new System.Drawing.Point(22, 566);
+            this.btnrefresh.Name = "btnrefresh";
+            this.btnrefresh.Size = new System.Drawing.Size(330, 42);
+            this.btnrefresh.TabIndex = 17;
+            this.btnrefresh.Text = "Refresh Data";
+            this.btnrefresh.UseVisualStyleBackColor = false;
+            this.btnrefresh.Click += new System.EventHandler(this.btnrefresh_Click);
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.pnlRight.Controls.Add(this.dataGridView1);
+            this.pnlRight.Controls.Add(this.pnlSearch);
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRight.Location = new System.Drawing.Point(380, 0);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Padding = new System.Windows.Forms.Padding(16);
+            this.pnlRight.Size = new System.Drawing.Size(838, 637);
+            this.pnlRight.TabIndex = 1;
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.BackColor = System.Drawing.Color.White;
+            this.pnlSearch.Controls.Add(this.txtsearch);
+            this.pnlSearch.Controls.Add(this.label8);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSearch.Location = new System.Drawing.Point(16, 16);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(806, 50);
+            this.pnlSearch.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
+            this.label8.Location = new System.Drawing.Point(12, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(161, 28);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "🔍 Search Name:";
+            // 
+            // txtsearch
+            // 
+            this.txtsearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtsearch.Location = new System.Drawing.Point(179, 8);
+            this.txtsearch.Name = "txtsearch";
+            this.txtsearch.Size = new System.Drawing.Size(610, 34);
+            this.txtsearch.TabIndex = 1;
+            this.txtsearch.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeight = 40;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(16, 66);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 35;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(806, 555);
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // treatment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1325, 730);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1218, 637);
+            this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.pnlLeftCard);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "treatment";
-            this.Text = "treatment";
+            this.Text = "Treatment Management";
             this.Load += new System.EventHandler(this.treatment_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.pnlLeftCard.ResumeLayout(false);
+            this.pnlLeftCard.PerformLayout();
+            this.pnlRight.ResumeLayout(false);
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -345,28 +401,29 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlLeftCard;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox cmbdoctor;
-        private System.Windows.Forms.ComboBox cmbservice;
         private System.Windows.Forms.ComboBox cmbappointment;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbservice;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbdoctor;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtfee;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker treatmentdate;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtnote;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtsearch;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtfee;
-        private System.Windows.Forms.Button btnrefresh;
+        private System.Windows.Forms.Button btnsave;
         private System.Windows.Forms.Button btnupdate;
         private System.Windows.Forms.Button btndel;
         private System.Windows.Forms.Button btnclear;
-        private System.Windows.Forms.Button btnsave;
+        private System.Windows.Forms.Button btnrefresh;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.Panel pnlSearch;
+        private System.Windows.Forms.TextBox txtsearch;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

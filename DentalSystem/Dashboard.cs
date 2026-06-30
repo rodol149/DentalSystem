@@ -29,6 +29,7 @@ namespace DentalSystem
                 activeForm.Close();
 
             activeForm = childForm;
+            label1.Text = childForm.Text; // Dynamic dashboard header title
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
