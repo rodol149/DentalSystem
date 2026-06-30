@@ -86,15 +86,17 @@ namespace DentalSystem
             this.panel2.Size = new System.Drawing.Size(222, 637);
             this.panel2.TabIndex = 1;
             // 
+            // 
             // btnservice
             // 
             this.btnservice.FlatAppearance.BorderSize = 0;
             this.btnservice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnservice.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnservice.ForeColor = System.Drawing.Color.White;
-            this.btnservice.Location = new System.Drawing.Point(12, 367);
+            this.btnservice.Location = new System.Drawing.Point(0, 320);
             this.btnservice.Name = "btnservice";
-            this.btnservice.Size = new System.Drawing.Size(200, 52);
+            this.btnservice.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnservice.Size = new System.Drawing.Size(222, 46);
             this.btnservice.TabIndex = 7;
             this.btnservice.Text = "Service";
             this.btnservice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -107,9 +109,10 @@ namespace DentalSystem
             this.btntre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btntre.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btntre.ForeColor = System.Drawing.Color.White;
-            this.btntre.Location = new System.Drawing.Point(12, 247);
+            this.btntre.Location = new System.Drawing.Point(0, 220);
             this.btntre.Name = "btntre";
-            this.btntre.Size = new System.Drawing.Size(200, 50);
+            this.btntre.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btntre.Size = new System.Drawing.Size(222, 46);
             this.btntre.TabIndex = 3;
             this.btntre.Text = "Treatments";
             this.btntre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,9 +125,10 @@ namespace DentalSystem
             this.btnpay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnpay.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnpay.ForeColor = System.Drawing.Color.White;
-            this.btnpay.Location = new System.Drawing.Point(12, 303);
+            this.btnpay.Location = new System.Drawing.Point(0, 270);
             this.btnpay.Name = "btnpay";
-            this.btnpay.Size = new System.Drawing.Size(200, 46);
+            this.btnpay.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnpay.Size = new System.Drawing.Size(222, 46);
             this.btnpay.TabIndex = 4;
             this.btnpay.Text = "Payments";
             this.btnpay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -137,9 +141,10 @@ namespace DentalSystem
             this.btnlogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlogout.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnlogout.ForeColor = System.Drawing.Color.White;
-            this.btnlogout.Location = new System.Drawing.Point(12, 522);
+            this.btnlogout.Location = new System.Drawing.Point(0, 470);
             this.btnlogout.Name = "btnlogout";
-            this.btnlogout.Size = new System.Drawing.Size(200, 43);
+            this.btnlogout.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnlogout.Size = new System.Drawing.Size(222, 46);
             this.btnlogout.TabIndex = 5;
             this.btnlogout.Text = "Logout";
             this.btnlogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,9 +157,10 @@ namespace DentalSystem
             this.btnreports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnreports.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnreports.ForeColor = System.Drawing.Color.White;
-            this.btnreports.Location = new System.Drawing.Point(12, 425);
+            this.btnreports.Location = new System.Drawing.Point(0, 370);
             this.btnreports.Name = "btnreports";
-            this.btnreports.Size = new System.Drawing.Size(200, 34);
+            this.btnreports.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnreports.Size = new System.Drawing.Size(222, 46);
             this.btnreports.TabIndex = 6;
             this.btnreports.Text = "Reports";
             this.btnreports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -167,9 +173,10 @@ namespace DentalSystem
             this.btndoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndoc.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btndoc.ForeColor = System.Drawing.Color.White;
-            this.btndoc.Location = new System.Drawing.Point(12, 136);
+            this.btndoc.Location = new System.Drawing.Point(0, 120);
             this.btndoc.Name = "btndoc";
-            this.btndoc.Size = new System.Drawing.Size(200, 34);
+            this.btndoc.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btndoc.Size = new System.Drawing.Size(222, 46);
             this.btndoc.TabIndex = 4;
             this.btndoc.Text = "Doctors";
             this.btndoc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -182,9 +189,10 @@ namespace DentalSystem
             this.btnappo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnappo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnappo.ForeColor = System.Drawing.Color.White;
-            this.btnappo.Location = new System.Drawing.Point(12, 176);
+            this.btnappo.Location = new System.Drawing.Point(0, 170);
             this.btnappo.Name = "btnappo";
-            this.btnappo.Size = new System.Drawing.Size(200, 52);
+            this.btnappo.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnappo.Size = new System.Drawing.Size(222, 46);
             this.btnappo.TabIndex = 5;
             this.btnappo.Text = "Appointments";
             this.btnappo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -197,9 +205,10 @@ namespace DentalSystem
             this.btnpat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnpat.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnpat.ForeColor = System.Drawing.Color.White;
-            this.btnpat.Location = new System.Drawing.Point(12, 74);
+            this.btnpat.Location = new System.Drawing.Point(0, 70);
             this.btnpat.Name = "btnpat";
-            this.btnpat.Size = new System.Drawing.Size(200, 45);
+            this.btnpat.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnpat.Size = new System.Drawing.Size(222, 46);
             this.btnpat.TabIndex = 3;
             this.btnpat.Text = "Patients";
             this.btnpat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,9 +221,10 @@ namespace DentalSystem
             this.btndash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndash.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btndash.ForeColor = System.Drawing.Color.White;
-            this.btndash.Location = new System.Drawing.Point(12, 16);
+            this.btndash.Location = new System.Drawing.Point(0, 20);
             this.btndash.Name = "btndash";
-            this.btndash.Size = new System.Drawing.Size(200, 52);
+            this.btndash.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btndash.Size = new System.Drawing.Size(222, 46);
             this.btndash.TabIndex = 2;
             this.btndash.Text = "Dashboard";
             this.btndash.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -227,9 +237,10 @@ namespace DentalSystem
             this.btnuser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnuser.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnuser.ForeColor = System.Drawing.Color.White;
-            this.btnuser.Location = new System.Drawing.Point(12, 482);
+            this.btnuser.Location = new System.Drawing.Point(0, 420);
             this.btnuser.Name = "btnuser";
-            this.btnuser.Size = new System.Drawing.Size(200, 34);
+            this.btnuser.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnuser.Size = new System.Drawing.Size(222, 46);
             this.btnuser.TabIndex = 8;
             this.btnuser.Text = "User";
             this.btnuser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
