@@ -19,6 +19,7 @@ namespace DentalSystem
         {
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pnlLoginCard = new System.Windows.Forms.Panel();
             this.pnlLeftBranding = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblClinicTitle = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@ namespace DentalSystem
             this.rbdoctor = new System.Windows.Forms.RadioButton();
             this.rbrec = new System.Windows.Forms.RadioButton();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.pnlLoginCard.SuspendLayout();
             this.pnlLeftBranding.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlRightForm.SuspendLayout();
@@ -49,6 +51,16 @@ namespace DentalSystem
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // pnlLoginCard
+            // 
+            this.pnlLoginCard.BackColor = System.Drawing.Color.White;
+            this.pnlLoginCard.Controls.Add(this.pnlRightForm);
+            this.pnlLoginCard.Controls.Add(this.pnlLeftBranding);
+            this.pnlLoginCard.Location = new System.Drawing.Point(0, 0);
+            this.pnlLoginCard.Name = "pnlLoginCard";
+            this.pnlLoginCard.Size = new System.Drawing.Size(850, 500);
+            this.pnlLoginCard.TabIndex = 0;
             // 
             // pnlLeftBranding
             // 
@@ -283,15 +295,16 @@ namespace DentalSystem
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(850, 500);
-            this.Controls.Add(this.pnlRightForm);
-            this.Controls.Add(this.pnlLeftBranding);
+            this.Controls.Add(this.pnlLoginCard);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SmileCare Login";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Login_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
+            this.pnlLoginCard.ResumeLayout(false);
             this.pnlLeftBranding.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlRightForm.ResumeLayout(false);
@@ -305,6 +318,7 @@ namespace DentalSystem
         #endregion
 
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Panel pnlLoginCard;
         private System.Windows.Forms.Panel pnlLeftBranding;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblClinicTitle;

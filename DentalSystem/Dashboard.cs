@@ -67,6 +67,7 @@ namespace DentalSystem
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             ApplyPermissions();
             // Show home stats by default
             OpenChildForm(new DashboardHome());
