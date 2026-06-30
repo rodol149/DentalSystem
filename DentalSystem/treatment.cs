@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -243,7 +243,33 @@ namespace DentalSystem
 
         private void btnsave_Click(object sender, EventArgs e)
         {
-          try
+            if (cmbappointment.SelectedValue == null || cmbappointment.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an Appointment No.");
+                return;
+            }
+            if (cmbservice.SelectedValue == null || cmbservice.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Service.");
+                return;
+            }
+            if (cmbdoctor.SelectedValue == null || cmbdoctor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Doctor.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtfee.Text))
+            {
+                MessageBox.Show("Please enter the treatment fee.");
+                return;
+            }
+            if (!decimal.TryParse(txtfee.Text.Trim(), out decimal fee) || fee < 0)
+            {
+                MessageBox.Show("Treatment fee must be a valid positive number.");
+                return;
+            }
+
+            try
             {
                 if (con.State == ConnectionState.Open)
                     con.Close();
@@ -262,29 +288,58 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@appointment_id", cmbappointment.SelectedValue);
                 cmd.Parameters.AddWithValue("@service_id", cmbservice.SelectedValue);
                 cmd.Parameters.AddWithValue("@doctor_id", cmbdoctor.SelectedValue);
-                cmd.Parameters.AddWithValue("@fee", txtfee.Text);
+                cmd.Parameters.AddWithValue("@fee", fee);
                 cmd.Parameters.AddWithValue("@date", treatmentdate.Value.Date);
-                cmd.Parameters.AddWithValue("@notes", txtnote.Text);
+                cmd.Parameters.AddWithValue("@notes", txtnote.Text.Trim());
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Treatment Saved Successfully");
 
-                LoadAppointments();
+                Loadtreatments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
             }
-            finally
-            {
-                con.Close();
-            }
-        
         }
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
+            if (treatmentID == 0)
+            {
+                MessageBox.Show("Please select a treatment record to update.");
+                return;
+            }
+            if (cmbappointment.SelectedValue == null || cmbappointment.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an Appointment No.");
+                return;
+            }
+            if (cmbservice.SelectedValue == null || cmbservice.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Service.");
+                return;
+            }
+            if (cmbdoctor.SelectedValue == null || cmbdoctor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Doctor.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtfee.Text))
+            {
+                MessageBox.Show("Please enter the treatment fee.");
+                return;
+            }
+            if (!decimal.TryParse(txtfee.Text.Trim(), out decimal fee) || fee < 0)
+            {
+                MessageBox.Show("Treatment fee must be a valid positive number.");
+                return;
+            }
+
             try
             {
                 con.Open();
@@ -303,30 +358,34 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@appointment", cmbappointment.SelectedValue);
                 cmd.Parameters.AddWithValue("@service", cmbservice.SelectedValue);
                 cmd.Parameters.AddWithValue("@doctor", cmbdoctor.SelectedValue);
-                cmd.Parameters.AddWithValue("@fee", txtfee.Text);
+                cmd.Parameters.AddWithValue("@fee", fee);
                 cmd.Parameters.AddWithValue("@date", treatmentdate.Value.Date);
-                cmd.Parameters.AddWithValue("@notes", txtnote.Text);
+                cmd.Parameters.AddWithValue("@notes", txtnote.Text.Trim());
                 cmd.Parameters.AddWithValue("@id", treatmentID);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Treatment Updated Successfully");
 
                 Loadtreatments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
             }
-            finally
-            {
-                con.Close();
-            }
-        
         }
 
         private void btndel_Click(object sender, EventArgs e)
         {
+            if (treatmentID == 0)
+            {
+                MessageBox.Show("Please select a treatment record to delete.");
+                return;
+            }
+
             try
             {
                 con.Open();
@@ -340,18 +399,17 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@id", treatmentID);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Treatment Deleted Successfully");
 
                 Loadtreatments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                if (con.State == ConnectionState.Open) con.Close();
             }
         }
         

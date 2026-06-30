@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -147,6 +147,32 @@ namespace DentalSystem
 
         private void btnupdate_Click_1(object sender, EventArgs e)
         {
+            if (paymentID == 0)
+            {
+                MessageBox.Show("Please select a payment to update.");
+                return;
+            }
+            if (cmbinvoice.SelectedValue == null || cmbinvoice.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an invoice.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbmethod.Text))
+            {
+                MessageBox.Show("Please select a payment method.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtamount.Text))
+            {
+                MessageBox.Show("Please enter the payment amount.");
+                return;
+            }
+            if (!decimal.TryParse(txtamount.Text.Trim(), out decimal amount) || amount < 0)
+            {
+                MessageBox.Show("Payment amount must be a valid positive number.");
+                return;
+            }
+
             try
             {
                 con.Open();
@@ -162,29 +188,34 @@ namespace DentalSystem
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@invoice", cmbinvoice.SelectedValue);
-                cmd.Parameters.AddWithValue("@amount", txtamount.Text);
+                cmd.Parameters.AddWithValue("@amount", amount);
                 cmd.Parameters.AddWithValue("@method", cmbmethod.Text);
                 cmd.Parameters.AddWithValue("@date", date.Value.Date);
                 cmd.Parameters.AddWithValue("@id", paymentID);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Updated Successfully");
 
                 LoadPayments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                if (con.State == ConnectionState.Open) con.Close();
             }
         }
 
         private void btndel_Click(object sender, EventArgs e)
         {
+            if (paymentID == 0)
+            {
+                MessageBox.Show("Please select a payment to delete.");
+                return;
+            }
+
             try
             {
                 con.Open();
@@ -195,23 +226,42 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@id", paymentID);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Deleted Successfully");
 
                 LoadPayments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                if (con.State == ConnectionState.Open) con.Close();
             }
         }
 
         private void btnsave_Click_1(object sender, EventArgs e)
         {
+            if (cmbinvoice.SelectedValue == null || cmbinvoice.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an invoice.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbmethod.Text))
+            {
+                MessageBox.Show("Please select a payment method.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtamount.Text))
+            {
+                MessageBox.Show("Please enter the payment amount.");
+                return;
+            }
+            if (!decimal.TryParse(txtamount.Text.Trim(), out decimal amount) || amount < 0)
+            {
+                MessageBox.Show("Payment amount must be a valid positive number.");
+                return;
+            }
 
             try
             {
@@ -225,23 +275,22 @@ namespace DentalSystem
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@invoice", cmbinvoice.SelectedValue);
-                cmd.Parameters.AddWithValue("@amount", txtamount.Text);
+                cmd.Parameters.AddWithValue("@amount", amount);
                 cmd.Parameters.AddWithValue("@method", cmbmethod.Text);
                 cmd.Parameters.AddWithValue("@date", date.Value.Date);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Payment Saved Successfully");
 
                 LoadPayments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                if (con.State == ConnectionState.Open) con.Close();
             }
         }
 

@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
@@ -145,6 +145,27 @@ namespace DentalSystem
         }
         private void btnsave_Click(object sender, EventArgs e)
         {
+            if (cmbpatient.SelectedValue == null || cmbpatient.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a patient.");
+                return;
+            }
+            if (cmbdoctor.SelectedValue == null || cmbdoctor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a doctor.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbstatus.Text))
+            {
+                MessageBox.Show("Please select a status.");
+                return;
+            }
+            if (appdate.Value.Date < DateTime.Today)
+            {
+                MessageBox.Show("Appointment date cannot be in the past.");
+                return;
+            }
+
             try
             {
                 con.Open();
@@ -172,23 +193,48 @@ namespace DentalSystem
                     txtnote.Text);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Appointment saved");
 
                 LoadAppointments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                if (con.State == ConnectionState.Open) con.Close();
             }
         }
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
+            if (appointmentID == 0)
+            {
+                MessageBox.Show("Please select an appointment to update.");
+                return;
+            }
+            if (cmbpatient.SelectedValue == null || cmbpatient.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a patient.");
+                return;
+            }
+            if (cmbdoctor.SelectedValue == null || cmbdoctor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a doctor.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbstatus.Text))
+            {
+                MessageBox.Show("Please select a status.");
+                return;
+            }
+            if (appdate.Value.Date < DateTime.Today)
+            {
+                MessageBox.Show("Appointment date cannot be in the past.");
+                return;
+            }
+
             try
             {
                 con.Open();
@@ -220,53 +266,47 @@ namespace DentalSystem
                 cmd.Parameters.AddWithValue("@id",appointmentID);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Appointment Updated");
 
                 LoadAppointments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
             }
-            finally
-            {
-                con.Close();
-            }
-        
-            }
+        }
 
         private void btndel_Click(object sender, EventArgs e)
         {
+            if (appointmentID == 0)
+            {
+                MessageBox.Show("Please select an appointment to delete.");
+                return;
+            }
+
             try
             {
                 con.Open();
-                string query =
-                @"UPDATE appointments SET patient_id=@patient , doctor_id=@doctor ,appointment_date= @date, appointment_time = @time, status = @status,notes=@notes WHERE appointment_id=@id";
+                string query = "DELETE FROM appointments WHERE appointment_id=@id";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@patient", cmbpatient.SelectedValue);
-                cmd.Parameters.AddWithValue("@doctor", cmbdoctor.SelectedValue);
-                cmd.Parameters.AddWithValue("@date", appdate.Value.Date);
-                cmd.Parameters.AddWithValue("@time", apptime.Value.ToString("HH:mm:ss"));
-                cmd.Parameters.AddWithValue("@status", cmbstatus.Text);
-                cmd.Parameters.AddWithValue("@notes", txtnote.Text);
                 cmd.Parameters.AddWithValue("@id", appointmentID);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Appointment Updated");
+                con.Close();
+                MessageBox.Show("Appointment Deleted successfully");
 
                 LoadAppointments();
+                btnclear_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
             }
-            finally
-            {
-                con.Close();
-            }
-
         }
 
         private void btnclear_Click(object sender, EventArgs e)
@@ -276,7 +316,7 @@ namespace DentalSystem
             cmbdoctor.SelectedIndex = -1;
             cmbstatus.SelectedIndex = -1;
             appdate.Value = DateTime.Today;
-            apptime.Value = DateTime.Today;
+            apptime.Value = DateTime.Now;
             txtnote.Clear();
         }
 

@@ -47,9 +47,63 @@ namespace DentalSystem
 
         private void btnsave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtfullname.Text))
+            string fullName = txtfullname.Text.Trim();
+            string phone = txtphone.Text.Trim();
+            string email = txtemail.Text.Trim();
+            string gender = cmbg.Text;
+            string address = txtaddress.Text.Trim();
+
+            // 1. Validation checks
+            if (string.IsNullOrWhiteSpace(fullName))
             {
                 MessageBox.Show("Please enter the patient's full name.");
+                return;
+            }
+            if (fullName.Length < 2)
+            {
+                MessageBox.Show("Full name must be at least 2 characters long.");
+                return;
+            }
+            if (!fullName.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '.' || c == '-'))
+            {
+                MessageBox.Show("Full name can only contain letters, spaces, dots, or hyphens.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(gender))
+            {
+                MessageBox.Show("Please select a gender.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                MessageBox.Show("Please enter a phone number.");
+                return;
+            }
+            if (!phone.All(char.IsDigit))
+            {
+                MessageBox.Show("Phone number must contain digits only.");
+                return;
+            }
+            if (phone.Length < 7 || phone.Length > 15)
+            {
+                MessageBox.Show("Phone number must be between 7 and 15 digits long.");
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                if (!System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show("Please enter a valid email address (e.g. name@domain.com).");
+                    return;
+                }
+            }
+
+            if (dob.Value.Date >= DateTime.Today)
+            {
+                MessageBox.Show("Date of birth must be a past date.");
                 return;
             }
 
@@ -61,8 +115,8 @@ namespace DentalSystem
                 string checkQuery = "SELECT COUNT(*) FROM patients WHERE phone = @phone OR full_name = @fullname";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
                 {
-                    checkCmd.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
-                    checkCmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@phone", phone);
+                    checkCmd.Parameters.AddWithValue("@fullname", fullName);
                     long count = Convert.ToInt64(checkCmd.ExecuteScalar());
                     if (count > 0)
                     {
@@ -74,11 +128,11 @@ namespace DentalSystem
 
                 String query = @"insert into patients (full_name, gender, phone, email, address, date_of_birth) values (@fullname, @gender, @phone, @email, @address, @date_of_birth)";
                 MySqlCommand cm = new MySqlCommand(query, con);
-                cm.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
-                cm.Parameters.AddWithValue("@gender", cmbg.Text);
-                cm.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
-                cm.Parameters.AddWithValue("@email", txtemail.Text.Trim());
-                cm.Parameters.AddWithValue("@address", txtaddress.Text.Trim());
+                cm.Parameters.AddWithValue("@fullname", fullName);
+                cm.Parameters.AddWithValue("@gender", gender);
+                cm.Parameters.AddWithValue("@phone", phone);
+                cm.Parameters.AddWithValue("@email", email);
+                cm.Parameters.AddWithValue("@address", address);
                 cm.Parameters.AddWithValue("@date_of_birth", dob.Value.Date);
 
                 cm.ExecuteNonQuery();
@@ -127,6 +181,66 @@ namespace DentalSystem
                 return;
             }
 
+            string fullName = txtfullname.Text.Trim();
+            string phone = txtphone.Text.Trim();
+            string email = txtemail.Text.Trim();
+            string gender = cmbg.Text;
+            string address = txtaddress.Text.Trim();
+
+            // 1. Validation checks
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                MessageBox.Show("Please enter the patient's full name.");
+                return;
+            }
+            if (fullName.Length < 2)
+            {
+                MessageBox.Show("Full name must be at least 2 characters long.");
+                return;
+            }
+            if (!fullName.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '.' || c == '-'))
+            {
+                MessageBox.Show("Full name can only contain letters, spaces, dots, or hyphens.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(gender))
+            {
+                MessageBox.Show("Please select a gender.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                MessageBox.Show("Please enter a phone number.");
+                return;
+            }
+            if (!phone.All(char.IsDigit))
+            {
+                MessageBox.Show("Phone number must contain digits only.");
+                return;
+            }
+            if (phone.Length < 7 || phone.Length > 15)
+            {
+                MessageBox.Show("Phone number must be between 7 and 15 digits long.");
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                if (!System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show("Please enter a valid email address (e.g. name@domain.com).");
+                    return;
+                }
+            }
+
+            if (dob.Value.Date >= DateTime.Today)
+            {
+                MessageBox.Show("Date of birth must be a past date.");
+                return;
+            }
+
             try {
                 con.Open();
 
@@ -134,8 +248,8 @@ namespace DentalSystem
                 string checkQuery = "SELECT COUNT(*) FROM patients WHERE (phone = @phone OR full_name = @fullname) AND patient_id != @patient_id";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
                 {
-                    checkCmd.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
-                    checkCmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@phone", phone);
+                    checkCmd.Parameters.AddWithValue("@fullname", fullName);
                     checkCmd.Parameters.AddWithValue("@patient_id", patientID);
                     long count = Convert.ToInt64(checkCmd.ExecuteScalar());
                     if (count > 0)
@@ -149,11 +263,11 @@ namespace DentalSystem
                 string query = @"update patients set full_name=@fullname, gender=@gender, phone=@phone, 
                             email=@email, address=@address, date_of_birth=@date_of_birth where patient_id = @patient_id";
                 MySqlCommand cm = new MySqlCommand(query, con);
-                cm.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
-                cm.Parameters.AddWithValue("@gender", cmbg.Text);
-                cm.Parameters.AddWithValue("@phone", txtphone.Text.Trim());
-                cm.Parameters.AddWithValue("@email", txtemail.Text.Trim());
-                cm.Parameters.AddWithValue("@address", txtaddress.Text.Trim());
+                cm.Parameters.AddWithValue("@fullname", fullName);
+                cm.Parameters.AddWithValue("@gender", gender);
+                cm.Parameters.AddWithValue("@phone", phone);
+                cm.Parameters.AddWithValue("@email", email);
+                cm.Parameters.AddWithValue("@address", address);
                 cm.Parameters.AddWithValue("@date_of_birth", dob.Value.Date);
                 cm.Parameters.AddWithValue("@patient_id", patientID);
 
