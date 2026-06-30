@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,36 +21,47 @@ namespace DentalSystem
             con = new MySqlConnection(connString);
         }
 
+        private Form activeForm = null;
+
+        private void OpenChildForm(Form childForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelMain.Controls.Clear();
+            panelMain.Controls.Add(childForm);
+            panelMain.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
         private void btnpat_Click(object sender, EventArgs e)
         {
-            // meshaan ha hilmaamin
-            Patient patient = new Patient();
-            patient.Show();
-
+            OpenChildForm(new Patient());
         }
 
         private void btndoc_Click(object sender, EventArgs e)
         {
-            Doctors doc = new Doctors();
-            doc.Show();
+            OpenChildForm(new Doctors());
         }
 
         private void btnappo_Click(object sender, EventArgs e)
         {
-            appointments app=new appointments();
-            app.Show();
+            OpenChildForm(new appointments());
         }
 
         private void btntre_Click(object sender, EventArgs e)
         {
-            treatment tr = new treatment();
-            tr.Show();
+            OpenChildForm(new treatment());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnservice_Click(object sender, EventArgs e)
         {
-            Service sr=new Service();
-            sr.Show();
+            OpenChildForm(new Service());
         }
 
          private void Dashboard_Load(object sender, EventArgs e)
@@ -86,20 +97,17 @@ namespace DentalSystem
 
         private void btnpay_Click(object sender, EventArgs e)
         {
-            payments bay = new payments ();
-            bay.Show();
+            OpenChildForm(new payments());
         }
 
         private void btnreports_Click(object sender, EventArgs e)
         {
-            Reports r = new Reports();
-            r.Show();
+            OpenChildForm(new Reports());
         }
 
         private void btnuser_Click(object sender, EventArgs e)
         {
-            User u = new User();
-            u.Show();
+            OpenChildForm(new User());
         }
 
         private void btnlogout_Click(object sender, EventArgs e)

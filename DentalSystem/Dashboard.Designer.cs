@@ -1,4 +1,4 @@
-﻿namespace DentalSystem
+namespace DentalSystem
 {
     partial class Dashboard
     {
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnservice = new System.Windows.Forms.Button();
@@ -98,7 +99,7 @@
             this.btnservice.Text = "Service";
             this.btnservice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnservice.UseVisualStyleBackColor = true;
-            this.btnservice.Click += new System.EventHandler(this.button1_Click);
+            this.btnservice.Click += new System.EventHandler(this.btnservice_Click);
             // 
             // btntre
             // 
@@ -234,11 +235,20 @@
             this.btnuser.UseVisualStyleBackColor = true;
             this.btnuser.Click += new System.EventHandler(this.btnuser_Click);
             // 
+            // panelMain
+            // 
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(222, 51);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1218, 637);
+            this.panelMain.TabIndex = 2;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1440, 688);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";
@@ -267,5 +277,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnservice;
         private System.Windows.Forms.Button btnuser;
+        private System.Windows.Forms.Panel panelMain;
     }
 }
