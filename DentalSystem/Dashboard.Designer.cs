@@ -219,6 +219,7 @@ namespace DentalSystem
             this.btndash.Text = "Dashboard";
             this.btndash.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btndash.UseVisualStyleBackColor = true;
+            this.btndash.Click += new System.EventHandler(this.btndash_Click);
             // 
             // btnuser
             // 

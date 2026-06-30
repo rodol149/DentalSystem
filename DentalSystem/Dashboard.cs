@@ -64,12 +64,16 @@ namespace DentalSystem
             OpenChildForm(new Service());
         }
 
-         private void Dashboard_Load(object sender, EventArgs e)
+        private void Dashboard_Load(object sender, EventArgs e)
         {
-            //lblUser.Text = CurrentUser.FullName;
-            //lblRole.Text = CurrentUser.Role;
-
             ApplyPermissions();
+            // Show home stats by default
+            OpenChildForm(new DashboardHome());
+        }
+
+        private void btndash_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new DashboardHome());
         }
         private void ApplyPermissions()
         {
