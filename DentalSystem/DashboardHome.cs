@@ -108,7 +108,7 @@ namespace DentalSystem
                                  FROM appointments a
                                  INNER JOIN patients p ON a.patient_id = p.patient_id
                                  INNER JOIN doctors  d ON a.doctor_id  = d.doctor_id
-                                 ORDER BY a.appointment_date DESC LIMIT 8";
+                                 ORDER BY a.appointment_id DESC";
 
                 var da = new MySqlDataAdapter(query, con);
                 var dt = new DataTable();
